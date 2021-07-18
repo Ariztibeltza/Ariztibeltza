@@ -1,0 +1,39 @@
+Web orri honetatik lortu dugu informazioa, izatez:
+
+    Flask-en erabiltzen diren 'tenplate' fitategiei buruzko apunteak dira       ->
+                                        https://flask.palletsprojects.com/en/2.0.x/patterns/templateinheritance/      
+
+Beti forma berria edukiko dugu:
+
+    1. core edo 'tenplate' zentral bat, honek forma jakin bat dauka eta informazio gehigarria txertatzeko baliaideak ematen dizkigu.
+
+    2. child tenplate bat, corean dauden hutsuneak betetzen dituena.
+
+1. Base/Core tenplate
+    Web orrian eskeletoa hematen digu, eta beste child-ek emango diote edukia honi. Ze hutsune beteko dituzte? Ba honako forma daukatenak:
+
+            {% block blokearen_izena %}{% endblock %}
+    
+    Adibide bat web orrian ikusi dezakegu
+
+2. Child tenplate
+    Base tenplate-n hutsuneak beteko diztuzte, gainera kontutan eduki behar dugu ze hutsune eta nola bete nahi ditugun. Honetarako:
+
+        {% extends "html_fitxategiaren_izena" %}
+        {% block bete_nahi_den_blokearen_izena %}
+        ...
+        {% endblock %}
+    
+    Honi buruzko informazio gehiago hemen, adibideekin:
+
+            https://roytuts.com/working-with-parent-and-child-templates-in-flask/
+
+Bebai, oso baliagarria egingo zaigu bloke logikoak erabiltzea, adibide honetan ikusi daitezkenak bezalakoak. Adibidez:
+
+    <!doctype html>
+    <title>Hello from Flask</title>
+    {% if name %}
+        <h1>Hello {{ name }}!</h1>
+    {% else %}
+        <h1>Hello, World!</h1>
+    {% endif %}

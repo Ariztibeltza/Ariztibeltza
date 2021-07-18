@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<hmtl lang = 'es'>
+    <head>
+        <meta charset = 'utf8'>
+        <link rel="stylesheet" href="/static/style.css">       
+        <!-- url_for() Flask-etik datorren zeozer da, fitxategiak kargatzeko-->
+        <title>Νέμεσις</title>
+    </head>
+    <body>
+        <header>
+            <h1>Νέμεσις</h1>
+        </header>
+
+        <nav>       
+            <ul>
+                <li><a href="http://127.0.0.1:5000/">Intro</a></li>
+                <li><a href="http://127.0.0.1:5000/cmdprompt">CMD Prompt</a></li>
+                <li><a href="http://127.0.0.1:5000/login">Login</a></li>     
+                <!-- Honekin lortzen dugu gauden helbideari azkenean hau gehitzea, app-en definitu dugun beste zatira pasatzeko-->
+                <!-- Ikusi behar dugu nola jarri goikoa politago -->
+            </ul>
+        </nav>
+
+        <article>
+            <h2>CMD Prompt</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium recusandae aliquid obcaecati. Sequi odit repellendus earum incidunt, 
+                ex quo eos quae fugit voluptas deserunt voluptatem quibusdam consectetur. Voluptates, nesciunt sapiente.</p>
+        </article>
+        <article class='prompt'>
+            <form action='http://127.0.0.1:5000/cmdprompt' method='POST'>
+                <label for='cmd'>  ~ cmd: </label>
+                <input type = 'text' name = '~ cmd' class='prompt_input' />
+                <input type='submit' value='Submit' hidden/>
+            </form>
+        
+            <!-- Hau da idatzi ditugun komandoak jartzeko -->
+            {% if cmd_data%}
+                <!--<p> executed: {{cmd_id}}</p>-->
+                <p> {{message}}</p>
+            {% endif %}
+
+            {% if cmd_id and value == HELP %}
+                {% block help %}{% endblock %}
+            {% endif %}
+
+            {% if error %}
+                <p> An error has occurred: {{error}}</p>
+            {% endif %}
+        </article>
+    </body>
+</hmtl>

@@ -1,0 +1,9 @@
+Egin behar ditugun gauzak honakoak dira:
+
+1. .html.jinja extensioa erabiliz inheritance-a jasoz maneiatu ahal ditugu gauza guztiak.
+
+2. Gauzak politak jarri font-family berri bat hartuta
+
+3. Ikusi nola implementatu daitekeen erroreak ikustea web orritik zuzenean
+
+MOMENTUZ ONDO GOAZ; DURO CHAVAL

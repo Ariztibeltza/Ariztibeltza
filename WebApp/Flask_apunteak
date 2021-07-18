@@ -1,0 +1,157 @@
+Apunte labur batxuk Flask-i buruz. Informazio guztia hemendik pasatuko dugu.
+
+    https://flask.palletsprojects.com/en/2.0.x/quickstart/#a-minimal-application
+
+Lehenengo eta behin honakoa egin behar dugu gure aplikazioan run egiteko.
+
+    $env:FLASK_APP = 'app.py'
+    flask run --host=0.0.0.0 --port=80
+
+Aldiz, agian interesatzen zaigu DEVELOPMENTERA pasatzea,
+
+    $env:FLASK_ENV = "development"
+    flask run
+
+Orain beste aimnat gai aztertuko ditugu:
+
+~~ HTML Escaping
+Erabiltzaileak alanola balioak heman ahal ditugu HTML bidez. <name> aldagai bat jaso eta view funtziora pasten dio. Formato hau daukagu:
+
+    from markupsafe import escape
+
+    @app.route("/<name>")
+    def hello(name):
+        return f"Hello, {escape(name)}!"
+
+~~ Routing
+Web orriak hainbat orrialde ezberdin eduki ahal ditu, hauek sortzeko nahitaez route ezberdinak erabili behar ditugu. Ahal bada erregela
+memoteknikoak erabili hal ditugu, erruta bakoitzerako izen esanguratzu bat erabiliz. Formato hau daukagu:
+
+    @app.route('/')                             ->  Hau da gure indexa, utomatikoki '/'-era baikoaz
+    def index():
+        return 'Index Page'
+
+    @app.route('/hello')
+    def hello():
+        return 'Hello, World'
+
+Honekin URL-aren zatiak dinamikoak egin ahal ditugu  rule (erregela) ezberdinak jarriz funtzio batean.
+
+~~ Variable Rules
+Aldagaiak erabili ahal ditgu gure funtzioetan, hauek erakusteko ondoren ala erabiltzeko halanola. Adibidez:
+
+    from markupsafe import escape
+
+    @app.route('/user/<username>')
+    def show_user_profile(username):
+        # show the user profile for that user
+        return f'User {escape(username)}'
+
+    @app.route('/post/<int:post_id>')
+    def show_post(post_id):
+        # show the post with the given id, the id is an integer
+        return f'Post {post_id}'
+
+    @app.route('/path/<path:subpath>')
+    def show_subpath(subpath):
+        # show the subpath after /path/
+        return f'Subpath {escape(subpath)}'
+
+Beraz, hau oso erabilgarria da jasotako informazioa erakusteko. gainera, hainbatdatu mota erakutsi ahal ditugu:
+
+    string,int,float,path (like string but with slashes '/'),uuid (accepted UUID strings)
+
+~~ Unique URLs/Redirection Behavior
+Gertatu daiteke ez edukitzea berezko @app.route('/'), hortaz, gure interpreteak '/rout_name/' daukanera eramango gaitu automatikoki. Beraz, honakoa dibidean:
+
+    @app.route('/projects/')                    -> Hona eramango gaitu automatikoki
+    def projects():
+        return 'The project page'
+
+    @app.route('/about/<question_reference>')   -> <question_reference> hartuko du url-aren helbide 'pertsonalizatua' sortzeko hau aldagai bat moduan hartuz
+    def about(question_reference):
+        return 'The about page'
+
+~~ URL Building
+Honek ahalbidetzen digu zuznean url-aren zatiak a lo bestia programatu beharrean bakoitzaren def-ak eginez. Adibide baten biddez ikusi dezakegu nola egin:
+
+Definizio guztiak hartuz:
+
+    from flask import Flask
+
+    @app.rout('/')
+    def index():
+        return 'index'
+    
+    @app.route('/login')
+    def login():
+        return 'login'
+
+Beste aldetik, hau egin genezake:
+
+    from flask import url_for
+
+    with app.test_request_context():
+        print(url_for('index'))
+        print(url_for('login'))
+
+Beraz, berdina baino trinkoagoa, dena argiago ikusi daiteke gainera.
+
+~~ HTTP Methods
+Flask-ek HTTP metodoak erabiltzen ditu datuen transferentzietarako eta emateko.
+
+    https://developer.mozilla.org/es/docs/Web/HTTP/Methods
+
+Metodoak erabiltzeko app.rout()-en sartu behar ditugu, adibide honetan iksuten den bezala:
+
+    from flask import request
+
+    @app.route('/login', methods=['GET', 'POST'])
+    def login():
+        if request.method == 'POST':
+            return do_the_login()
+        else:
+            return show_the_login_form()
+
+~~ Static Files
+Aplikazio weba dinamikoa izan behar bada, static motako fitxategiak hartu behar ditugu. 'static' karpeta sortu eta 'style.css' fitxategia sortu. Ondoren:
+
+    url_for('static',filename = 'style.css')
+
+~~ Rendering Templates
+Web orria ondo egiteko, htmkl lengoaian osatutako fitxategiak erabiliko ditugu. Flask-ek 'template' karpetan dauden .html fitxategiak jaso ahal ditu.
+Honi buruzko informazioa hemen topatu dezakegu:
+
+    https://flask.palletsprojects.com/en/2.0.x/patterns/templateinheritance/
+
+Gainera, tenplate honi alagai bat pasatu ahal diogu, honek erabili behar badu. Honetarako 'render_tenplate()' metodoa erabiliko dugu. Adibidez:
+
+    from flask import render_template
+
+    @app.route('/hello/')
+    @app.route('/hello/<name>')
+    def hello(name=None):
+        return render_template('hello.html', name=name)
+
+Tenplate-ak maneiatzeko Jinja 2 daukagu bebai:
+
+    https://jinja.palletsprojects.com/en/3.0.x/templates/
+
+
+
+~~ Accesing Requested Data
+~~ Context Locals
+~~ Request Object
+~~ File Uploads
+~~ Cookies
+~~ Redirects and Errors
+~~ About Responses
+~~ APIs with JSON
+~~ Sessions
+~~ Message Flashing
+~~ Logging
+~~ Hooking in WSGI Middleware
+~~ Using Flask Extensions
+
+~~ ADIBIDE BAT ~~
+    https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-es

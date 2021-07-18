@@ -1,0 +1,75 @@
+
+
+
+Ideia Nagusia:
+
+Eraikiko dugu webapp bat Python erabiliz gordetzeko mqtt-tik jasotako mezuak 
+mongodb datubase batean.
+Funtzionamendua horrela izango da: Laborategian dagoen esperimentu bakoitza
+bidaliko du trigger bat eta webappa hori hartuko du eta hasiko da datubasean
+datuak gordetzen.
+Webapp bitartez, izango genuke eskuragarri konfigurazioa (baldin badagoen) eta
+metrikak.
+
+Webapp:
+  http edo https-n oinarritutako aplikazio bat. Funtsezkoena RESTful api sortzea
+  beharrezkoa dela da.
+  Izango ditu frontend bat (erabiltzailearekin informazio trukatzeko) eta
+  backend bat (logika inplementatzeko).
+  Backend web zerbitzari batean oinarrituta egongo da. Ideia izango da ahal den 
+  guztian Python erabiltzea, beraz Flask erabiltzea ondo legoke.
+  Ondo legoke logger bat ere izatea.
+  Webapp izateak ahalbidetuko digu Docker kontainer batean jartzea.
+
+mqtt:
+  Machine to machine (M2M) protokoloa. Makina guztiak mezuak bidaltzen dituzte
+  broker batera "topic" bat adieraziz eta informazio hori jaso nahi duten 
+  makinek izena ematen dute "topic" horretan eta brokerrak ematen die.
+  Oso erraz inplementatzen da broker bat Docker kontainerrak erabiliz.
+  Erabiltzen den mqtt sistema orokorrena mosquitto da, baina nik gusutuko nuke
+  emqx ere frogatzea ikusteko zein den errazago cluster batean jartzeko.
+  Gure kasuan datuak bidaltzen dituen gailuak era askotatkoak izan daitezke.
+  Jar ditzakegu ardunioak, rpiak, beste PCak, kontrolagailu dedikatuak,...
+
+mongodb:
+  NoSQL datubase bat. Intserzio maila oso altua du, sendoa da eta diseinatuta 
+  dago oso eskalagarria izateko. Konfigura daiteke makina desberdinetan egoteko
+  eta datuak errepikatuta eta beti eskuragarri izateko.
+  Ikusita nola doan GrALa hauek rpi batzuetan instalatuko ditugu.
+
+Plana:
+
+Hau zure erara egin dezakezu, baina ni hasiko nintzateke honela:
+1.- Begiratu Interneten dauden antzeko aplikazioak.
+2.- Saiatu instalatzen Docker eta mqtt broker bat Dockerretik abiatuta.
+    Programatu mqtt bezero eta ekoizle bat eta ikusi nola doan mqtt.
+3.- Docker bitartez mongodb instalatu eta ulertu zelan doan.
+4.- Hasi RESTful api zer den ulertzen eta egin adibide sinple bat.
+5.- Programatu zure 1. bertsioa.
+6.- Mila gauza egin dezakegu jarraian.
+
+
+Hiztegia:
+Erabiliko ditugun terminologia eta gutxi gorabehera menperatu beharko duzuna.
+
+Webapp:
+ Restful api
+ Frontend
+ Backend
+ Flask
+MQTT:
+ Broker
+ Client
+ Topic
+ Subscribe
+MongoDB:
+ Sharded DB
+Containers:
+ Docker
+ Kubernetes: k8s, k3s.
+ Nomad
+Monitoring:
+ Grafana
+ Prometheus
+ Python logger
+ 

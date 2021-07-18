@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<hmtl lang = 'es'>
+    <head>
+        <meta charset = 'utf8'>
+        <link rel="stylesheet" href="static/style.css">       
+        <!-- url_for() Flask-etik datorren zeozer da, fitxategiak kargatzeko-->
+        <title>Νέμεσις</title>
+    </head>
+    <body>
+        <header>
+            <h1>Νέμεσις</h1>
+        </header>
+
+        <nav>       
+            <ul>
+                <li><a href="http://127.0.0.1:5000/">Intro</a></li>
+                <li><a href="http://127.0.0.1:5000/cmdprompt">CMD Prompt</a></li>
+                <li><a href="http://127.0.0.1:5000/login">Login</a></li>     
+                <!-- Honekin lortzen dugu gauden helbideari azkenean hau gehitzea, app-en definitu dugun beste zatira pasatzeko-->
+                <!-- Ikusi behar dugu nola jarri goikoa politago -->
+            </ul>
+        </nav>
+
+        {% block text %}{% endblock %}
+
+    </body>
+</hmtl>

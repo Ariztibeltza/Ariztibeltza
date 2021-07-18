@@ -1,0 +1,47 @@
+TFG-ARI BURUZKO APUNTEAK
+
+Lehenengo eta behin gure sisteman behar ditugun dependentzia guztiak jarri behar ditugu. Honetarako Flask installatu behar dugu eta garapena egiteko virtual environment bat egingo dugu env erabiliz.
+Honako web orritik hartuko dugu informazioa:
+	
+	https://code.visualstudio.com/docs/python/tutorial-flask#:~:text=Flask%20is%20a%20lightweight%20Python,%2C%20authentication%2C%20and%20so%20on.
+
+Behin hau eginda, env virtua environment bat eta Terminal berezi bat eraikiko ditugu, eta Virtual Studio-n Console bat exekutatzean (env) berde bat agertuko da. Behin hau eginda pip installatu eta ondoren hau erabiliz flask
+installatuko dugu.
+
+~~ WEBAPP-a ~~
+
+Flask-ek beti begiratuko du 'app.py' (GOGORATU .py IZENEAN JARTZNE BESTELA EZ DUELAKO ONDO EGITEN FLASK_APP-ARENA) fitxategia installatutako directorioan edo 
+honen barnean dauden karpetetan. Aplikazioa exekutatzeko honakoa egin eraikitakoterminal berrian:
+
+	'python -m flask run' 	->	terminaletik lortzeko irteera
+
+Honetaz gain aplikazioan honakoa erabili dugu, Flask egitean hainbat aldagai jaso nahi ditugulako eta hauek finkatzeko 'python-dotenv'erabili dugu.
+
+	https://github.com/theskumar/python-dotenv#readme
+
+Beraz, aplikazioa exekutatu nahi dugunean ('env':venv) PowerShellean honako komandoak jarri behar ditugu:
+
+	$env:FLASK_APP = 'app_name.py'				-> FLASK_APP=app_name.py fitxategia bezala identifikatzen du 
+	flask run								 	-> Direcotiorio honetan dagoen fitxategia, goain finkatutako izenarekin exekutatzen du.
+
+Aldiz, beste helbide batean exekutatu nahi badugu gure aplikazioa:
+
+	$env:FLASK_APP = 'app_name.py'
+	flask run --host=0.0.0.0 --port=80
+
+Behin Flask jarrita eta koonrpobatuta ondo doala, html bidez web orri bat sortu beharko dugu
+
+Python erabiltzerakoan:
+
+	Flask erbiliz -> https://code.tutsplus.com/es/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972
+		Flask instalatzeko -> https://code.visualstudio.com/docs/python/tutorial-flask#:~:text=Flask%20is%20a%20lightweight%20Python,%2C%20authentication%2C%20and%20so%20on.
+	
+	Ingelesez testu originala -> https://code.tutsplus.com/series/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-827
+
+~~ MQTT ~~
+Oinarrizko informazioa web honetatik lortuko dugu.
+
+	Organizazioa 				-> 	https://mqtt.org
+	Tutoriala					->	http://www.steves-internet-guide.com/mqtt-works/
+	Python mqtt cliente bat		->		http://www.steves-internet-guide.com/client-connections-python-mqtt/
+	MQTT brokerra 				->	https://docs.emqx.io/en/broker/v4.3/getting-started/start.html
